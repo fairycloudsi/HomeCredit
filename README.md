@@ -41,7 +41,7 @@ Here is a figure to illustrate all the data.
 
 ## Preprocessing - [Exploratory data analysis](Home_Credit_EDA.ipynb) 
 
-## Preprocessing - [Data Merging and Augmentation](Home_Credit_Data_Agumentatio.ipynb) 
+## Preprocessing - [Data Merging and Augmentation](Home_Credit_Data_Agumentation.ipynb) 
 This is the jupyter notebook for data preprocessing --merging and augmentation. After preprocessing, the size of train data is (356251,798).
 
 ## Preprocessing - [LightGBM Feature Importance](Home_Credit_Feature_Selecting.ipynb)
