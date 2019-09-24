@@ -38,3 +38,12 @@ Features are information about previous applications including amt_annuity, amt_
 
 Here is a figure to illustrate all the data. 
 ![Data Info](/pic/Home_Credit_data.png)
+
+## Preprocessing - [Exploratory data analysis](Home_Credit_EDA.ipynb) 
+
+## Preprocessing - [Data Merging and Augmentation](Home_Credit_Data_Augmentation.ipynb) 
+This is the jupyter notebook for data preprocessing --merging and augmentation. After preprocessing, the size of train data is (356251,798).
+
+## Preprocessing - [LightGBM Feature Importance](Home_Credit_Feature_Selecting)
+This is the feature importance given by LightGBM model. 
+![Feature Importance](lgbm_importance092319.png)
