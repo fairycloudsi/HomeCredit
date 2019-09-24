@@ -46,4 +46,4 @@ This is the jupyter notebook for data preprocessing --merging and augmentation. 
 
 ## Preprocessing - [LightGBM Feature Importance](Home_Credit_Feature_Selecting)
 This is the feature importance given by LightGBM model. 
-![Feature Importance](lgbm_importance092319.png)
+![Feature Importance](lgbm_importances092319.png)
