@@ -85,7 +85,7 @@
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
 
-\title[Short title]{Home Credit Default Risk Prediction} % The short title appears at the bottom of every slide, the full title is only on the title page
+\title{Home Credit Default Risk Prediction} % The short title appears at the bottom of every slide, the full title is only on the title page
 
 \author{Huiwen Wu} % Your name
 \institute[UCI] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
@@ -112,16 +112,20 @@ University of California, Irvine \\ % Your institution for the title page
 %----------------------------------------------------------------------------------------
 
 %------------------------------------------------
-\section{First Section} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
+\section{Background} % Sections can be created in order to organize your presentation into discrete blocks, all sections and subsections are automatically printed in the table of contents as an overview of the talk
 %------------------------------------------------
 
-\subsection{Subsection Example} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 
 \begin{frame}
 \frametitle{Background}
-Many people struggle to get loans due to insufficient or non-existent credit histories. And, unfortunately, this population is often taken advantage of by untrustyworthy lenders. 
 
-Home Credit strives to broaden financial inclusion for the unbanked population by providing a positive and safe borrowing experience. In order to make sure this underserved population has a positive loan experience. A variety of alternative data -- including telco and transactional information -- are used to predict clients' repayment abilities. 
+\begin{itemize}
+\item Many people struggle to get loans due to insufficient or non-existent credit histories. 
+\item This population is often taken advantage of by untrustworthy lenders. 
+\item A variety of alternative data -- including telco and transactional information-- is useful. 
+\item Make use of additional data to provide the unbanked population a positive and safe borrowing experience. 
+\item Data provided by Home Credit. 
+\end{itemize}
 \end{frame}
 
 %------------------------------------------------
@@ -129,9 +133,11 @@ Home Credit strives to broaden financial inclusion for the unbanked population b
 \begin{frame}
 \frametitle{Mathmetical Problems}
 \begin{itemize}
-\item Input: Data of applications, bureau, credit card, installments payments, POS CASH and previous applications.
+\item Which problem? Regression or Classification? 
+\item Input: Data of applications, bureau, credit card, installment payments, POS CASH and previous applications.
+\item Labels: 0 or 1.
+\item Eventually, there are only two statuses: fully paid and charged off. 
 \item Output: Probability of clients' ability of loan repayment, a value from 0 to 1. 
-\item Probelm: Regression or Classification? 
 \end{itemize}
 
 
@@ -149,11 +155,15 @@ Home Credit strives to broaden financial inclusion for the unbanked population b
 
 \begin{frame}{Data Characteristics}
 \begin{itemize}
-\item Massive data and a lot of features $799$. 
+\item Massive data. -- $799$ features. 
 \item Redundant information. 
-\item A lot of sparse features. 
-\item High correlation between some features -- number of children, house type, ages. 
+\item High sparsity features. -- Cols 42-89, 94-114 have sparsity more than $50\%$. 
 \end{itemize}
+\begin{figure}
+  \includegraphics[width=\linewidth]{pic/sparse_data.png}
+  \caption{Home Credit Data}
+  \label{fig:data}
+\end{figure}
 \end{frame}
 %------------------------------------------------
 \section{Models}
@@ -186,7 +196,7 @@ A decision tree is a decision support tool that uses a tree-like graph or model 
 \end{frame}
 
 \begin{frame}{Gradient Boosting Trees}
-Boosting is an ensemble technique in which the predictors are not made independently, but sequentially. This method tries to fit the new redictor to the residual errors made by the previous predictor. 
+Boosting is an ensemble technique in which the predictors are not made independently, but sequentially. This method tries to fit the new predictor to the residual errors made by the previous predictor. 
 \begin{figure}
   \includegraphics[width=0.45\linewidth]{pic/gradient_boosting.png}
   \caption{Gradient Boosting Tree Eaxmple}
@@ -200,22 +210,20 @@ Boosting is an ensemble technique in which the predictors are not made independe
 \begin{frame}
 \frametitle{Models}
 \begin{block}{Logistic Regression}
-Easy to implement and very efficient to train.\\
-Feature engineering plays an important roles. \\
-Only produce linear decision boundary. \\
- Data needs to be well preprocessed. \\
+($+$) Easy to implement and very efficient to train.\\
+($\pm$) Feature engineering plays an important roles. \\
+($-$ ) Produce linear decision boundary. \\
 \end{block}
 
 \begin{block}{Decision Tree}
-Less data cleaning is requires (NAN). \\
-Data type is not a constraint. \\
-Implicitly perform feature selections.\\
-Slower and overfitting. 
+($+$) Less data cleaning is requires (NAN) and data type is not a constraint. \\
+($+$) Implicitly perform feature selections.\\
+($-$) Slower and overfitting. 
 \end{block}
 
 \begin{block}{LightGBM}
-Model is more powerful compared to decision tree.\\
-Fast compared to gradient boosting tree.\\
+($+$) Model is more powerful compared to decision tree.\\
+($+$) Fast compared to gradient boosting tree.\\
 \end{block}
 \end{frame}
 
@@ -232,18 +240,20 @@ Fast compared to gradient boosting tree.\\
 \end{itemize}
 \end{frame}
 
+%------------------------------------------------
+\section{Results}
 \begin{frame}{Feature Importance}
 \begin{figure}
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.4\linewidth]{pic/lgbm_importances01.png}
+  \includegraphics[width=.6\linewidth]{pic/lgbm_importances01.png}
   \caption{LightGBM Importances}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.4\linewidth]{pic/dr_importances.png}
+  \includegraphics[width=.5\linewidth]{pic/dr_importances.png}
   \caption{Decision Tree Importances}
   \label{fig:sub2}
 \end{subfigure}
@@ -252,8 +262,7 @@ Fast compared to gradient boosting tree.\\
 \end{figure}
 \end{frame}
 
-%------------------------------------------------
-\section{Second Section}
+
 %------------------------------------------------
 
 \begin{frame}{Results: AUC Scores}
@@ -277,7 +286,7 @@ Fast compared to gradient boosting tree.\\
 
 \begin{frame}{Improvements}
 \begin{itemize}
-\item Make more use of EDA. 
+\item Make more use of Exploratory Data Analysis. 
 \item Use Neural Networks as one model. 
 \item Ensemble various models.
 \item Light feature selections. 
